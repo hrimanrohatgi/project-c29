@@ -1,0 +1,62 @@
+const Engine = Matter.Engine;
+ const World = Matter.World; 
+ const Bodies = Matter.Bodies; 
+ const Constraint = Matter.Constraint;
+var g,base;
+var box1,box2,box3,box4,box5,box6,box7,box8,box9,box10,box11,box12,box13,box14,box15,box16;
+var hexagon;
+var slingshot;
+
+function setup() {
+  createCanvas(800,400);
+  engine = Engine.create(); 
+  world = engine.world;
+   Engine.run(engine);
+
+g = new Ground(400,380,800,20);
+
+base = new Ground(350,250,250,20)
+
+box1 = new Box(353,100,20,20);
+box2 = new Box(365,120,20,20);
+box3 = new Box(345,120,20,20);
+box4 = new Box(373,150,20,20);
+box5 = new Box(353,150,20,20);
+box6 = new Box(333,150,20,20);
+box7 = new Box(325,200,20,20);
+box8 = new Box(345,200,20,20);
+box9 = new Box(365,200,20,20);
+box10 = new Box(385,200,20,20);
+
+hexagon = new Hexagon(100,100,30,30)
+
+slingshot = new SlingShot(hexagon.body,{x:100,y:100})
+}
+
+function draw() {
+  background("black");  
+g.display();
+base.display();
+box1.display();
+box2.display();
+box3.display();
+box4.display();
+box5.display();
+box6.display();
+box7.display();
+box8.display();
+box9.display();
+box10.display();
+
+hexagon.display();
+
+slingshot.display();
+}
+
+function mouseDragged(){
+  Matter.Body.setPosition(hexagon.body, {x: mouseX , y: mouseY});
+}
+
+function mouseReleased(){
+  slingshot.fly();
+}
